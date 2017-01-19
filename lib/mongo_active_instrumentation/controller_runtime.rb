@@ -20,7 +20,7 @@ module MongoActiveInstrumentation
     end
 
     def cleanup_view_runtime
-      if logger && logger.info? && ActiveRecord::Base.connected?
+      if logger && logger.info?
         mongo_rt_before_render = MongoActiveInstrumentation::LogSubscriber.reset_runtime
         self.mongo_runtime = (mongo_runtime || 0) + mongo_rt_before_render
         runtime = super
@@ -34,9 +34,7 @@ module MongoActiveInstrumentation
 
     def append_info_to_payload(payload)
       super
-      if ActiveRecord::Base.connected?
-        payload[:mongo_runtime] = (mongo_runtime || 0) + MongoActiveInstrumentation::LogSubscriber.reset_runtime
-      end
+      payload[:mongo_runtime] = (mongo_runtime || 0) + MongoActiveInstrumentation::LogSubscriber.reset_runtime
     end
 
     module ClassMethods # :nodoc:
