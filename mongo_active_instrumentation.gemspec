@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'mongo_active_instrumentation'
-  s.version     = '0.1.1'
+  s.version     = '0.1.2'
   s.authors     = ['Edgars Beigarts']
   s.summary     = 'ActiveSupport/Rails instrumentation for Mongo'
   s.email       = ['edgars.beigarts@gmail.com']
